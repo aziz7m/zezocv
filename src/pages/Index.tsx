@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { HeroSection } from "@/components/cv/HeroSection";
+import { SummarySection } from "@/components/cv/SummarySection";
+import { ExperienceSection } from "@/components/cv/ExperienceSection";
+import { EducationSection } from "@/components/cv/EducationSection";
+import { SkillsSection } from "@/components/cv/SkillsSection";
+import { LanguagesSection } from "@/components/cv/LanguagesSection";
+import { ObjectivesSection } from "@/components/cv/ObjectivesSection";
+import { FooterSection } from "@/components/cv/FooterSection";
+import { Language } from "@/data/cvData";
 
 const Index = () => {
+  const [language, setLanguage] = useState<Language>('en');
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className={`min-h-screen ${language === 'ar' ? 'rtl' : 'ltr'}`}>
+      <HeroSection language={language} onLanguageChange={setLanguage} />
+      <SummarySection language={language} />
+      <ExperienceSection language={language} />
+      <EducationSection language={language} />
+      <SkillsSection language={language} />
+      <LanguagesSection language={language} />
+      <ObjectivesSection language={language} />
+      <FooterSection language={language} />
     </div>
   );
 };
