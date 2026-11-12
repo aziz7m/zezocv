@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Linkedin, Download, Globe } from "lucide-react";
+import { ArrowDownRight, Download, Globe, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { cvData, Language } from "@/data/cvData";
 import profileImage from "@/assets/profile.jpg";
 
@@ -9,118 +9,80 @@ interface HeroSectionProps {
 }
 
 export const HeroSection = ({ language, onLanguageChange }: HeroSectionProps) => {
-  const isArabic = language === 'ar';
+  const isArabic = language === "ar";
   const data = cvData.personal;
 
-  const handleDownload = () => {
-    window.print();
-  };
-
   return (
-    <section className="hero-section min-h-[60vh] relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-white/20 -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-white/10 translate-y-1/2 -translate-x-1/2" />
-      </div>
+    <section className="hero-section relative overflow-hidden">
+      <div className="hero-grid-lines" aria-hidden="true" />
+      <div className="container mx-auto px-5 py-6 md:px-8 md:py-8 relative z-10">
+        <div className="hero-topbar no-print">
+          <span className="brand-mark">Z7Z<span>.</span></span>
+          <div className="lang-switcher" role="group" aria-label="Language">
+            <button onClick={() => onLanguageChange("en")} className={language === "en" ? "active" : ""}>EN</button>
+            <button onClick={() => onLanguageChange("ar")} className={language === "ar" ? "active" : ""}>عربي</button>
+          </div>
+        </div>
 
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        {/* Language Toggle */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-end gap-2 mb-8 no-print"
-        >
-          <button
-            onClick={() => onLanguageChange('en')}
-            className={`lang-toggle flex items-center gap-2 ${language === 'en' ? 'active' : ''}`}
-          >
-            <Globe className="w-4 h-4" />
-            English
-          </button>
-          <button
-            onClick={() => onLanguageChange('ar')}
-            className={`lang-toggle flex items-center gap-2 ${language === 'ar' ? 'active' : ''}`}
-          >
-            <Globe className="w-4 h-4" />
-            العربية
-          </button>
-        </motion.div>
-
-        <div className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-16 ${isArabic ? 'lg:flex-row-reverse' : ''}`}>
-          {/* Profile Image */}
+        <div className={`hero-layout ${isArabic ? "hero-layout-ar" : ""}`}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="flex-shrink-0"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            className="hero-copy"
           >
-            <div className="profile-image w-48 h-48 md:w-56 md:h-56">
-              <img 
-                src={profileImage} 
-                alt={data.name[language]}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Info */}
-          <motion.div 
-            initial={{ opacity: 0, x: isArabic ? 30 : -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className={`flex-grow text-center lg:text-left ${isArabic ? 'lg:text-right arabic' : ''}`}
-          >
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${isArabic ? 'font-arabic' : 'font-display'}`}>
-              {data.name[language]}
-            </h1>
-            <p className={`text-lg md:text-xl text-primary-foreground/90 mb-6 max-w-2xl ${isArabic ? 'font-arabic' : ''}`}>
-              {data.title[language]}
+            <p className={`eyebrow ${isArabic ? "font-arabic" : ""}`}>
+              <span className="eyebrow-dot" />
+              {isArabic ? "ملف مهني · 2024 — حتى الآن" : "Technical profile · 2024 — Present"}
+            </p>
+            <h1 className={isArabic ? "font-arabic" : ""}>{data.name[language]}</h1>
+            <p className={`hero-role ${isArabic ? "font-arabic" : ""}`}>{data.title[language]}</p>
+            <p className={`hero-intro ${isArabic ? "font-arabic" : ""}`}>
+              {isArabic
+                ? "أبني تطبيقات متكاملة من الفكرة الأولى إلى النشر والدعم، مع تركيز عملي على ASP.NET Core والأنظمة الموثوقة."
+                : "I build complete digital systems from first idea to deployment, with a practical focus on ASP.NET Core and reliable technology."}
             </p>
 
-            {/* Contact Info */}
-            <div className={`flex flex-wrap justify-center gap-4 ${isArabic ? 'lg:justify-end' : 'lg:justify-start'}`}>
-              <a 
-                href={`tel:${data.phone}`}
-                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span dir="ltr">{data.phone}</span>
-              </a>
-              <a 
-                href={`mailto:${data.email}`}
-                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                {data.email}
-              </a>
-              <span className="flex items-center gap-2 text-sm text-primary-foreground/80">
-                <MapPin className="w-4 h-4" />
-                {data.location[language]}
-              </span>
-              <a 
-                href={data.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-              >
+            <div className={`hero-actions no-print ${isArabic ? "hero-actions-ar" : ""}`}>
+              <button onClick={() => window.print()} className="primary-action">
+                <Download className="w-4 h-4" />
+                {isArabic ? "تحميل السيرة الذاتية" : "Download CV"}
+              </button>
+              <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="secondary-action">
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
             </div>
 
-            {/* Download Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              onClick={handleDownload}
-              className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-all shadow-lg hover:shadow-xl no-print"
-            >
-              <Download className="w-5 h-5" />
-              {isArabic ? 'تحميل السيرة الذاتية' : 'Download CV'}
-            </motion.button>
+            <div className={`hero-contact ${isArabic ? "hero-contact-ar" : ""}`}>
+              <a href={`mailto:${data.email}`}><Mail className="w-4 h-4" />{data.email}</a>
+              <a href={`tel:${data.phone}`}><Phone className="w-4 h-4" /><span dir="ltr">{data.phone}</span></a>
+              <span><MapPin className="w-4 h-4" />{data.location[language]}</span>
+            </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.65, delay: 0.12 }}
+            className="hero-side"
+          >
+            <div className="portrait-frame">
+              <img src={profileImage} alt={data.name[language]} />
+              <span className="portrait-tag">FULL-STACK / IT</span>
+            </div>
+            <div className="hero-stats">
+              <div><strong>25+</strong><span>{isArabic ? "سنة خبرة" : "years experience"}</span></div>
+              <div><strong>200K+</strong><span>{isArabic ? "مستخدم وسجل" : "users & records"}</span></div>
+              <div><strong>.NET</strong><span>{isArabic ? "التقنية الأساسية" : "core stack"}</span></div>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className={`hero-stack ${isArabic ? "font-arabic" : ""}`}>
+          <span>{isArabic ? "المجموعة التقنية" : "TECH STACK"}</span>
+          {['ASP.NET Core', 'C#', 'React', 'JavaScript', 'SQL', 'REST APIs', 'CCTV'].map((item) => <b key={item}>{item}</b>)}
+          <ArrowDownRight className="w-5 h-5" />
         </div>
       </div>
     </section>
