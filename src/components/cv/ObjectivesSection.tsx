@@ -34,7 +34,7 @@ export const ObjectivesSection = ({ language }: ObjectivesSectionProps) => {
               transition={{ delay: index * 0.1 }}
               className={`cv-card flex items-start gap-4 ${isArabic ? 'flex-row-reverse text-right' : ''}`}
             >
-              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                 <Target className="w-6 h-6 text-accent" />
               </div>
               <p className={`text-muted-foreground ${isArabic ? 'font-arabic' : ''}`}>

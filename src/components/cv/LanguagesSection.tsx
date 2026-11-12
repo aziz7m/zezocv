@@ -34,7 +34,7 @@ export const LanguagesSection = ({ language }: LanguagesSectionProps) => {
               transition={{ delay: index * 0.1 }}
               className={`cv-card flex-1 text-center ${isArabic ? 'arabic' : ''}`}
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
                 <Languages className="w-8 h-8 text-primary" />
               </div>
               <h3 className={`text-xl font-bold text-foreground mb-2 ${isArabic ? 'font-arabic' : 'font-display'}`}>

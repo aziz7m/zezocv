@@ -43,7 +43,7 @@ export const SkillsSection = ({ language }: SkillsSectionProps) => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className={`flex justify-between mb-2 ${isArabic ? 'flex-row-reverse' : ''}`}>
+                  <div className="flex justify-between mb-2">
                     <span className={`font-medium text-foreground ${isArabic ? 'font-arabic' : ''}`}>
                       {skill.name[language]}
                     </span>
@@ -55,7 +55,7 @@ export const SkillsSection = ({ language }: SkillsSectionProps) => {
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, delay: index * 0.1 }}
-                      className="skill-bar-fill"
+                      className={`skill-bar-fill ${isArabic ? 'ml-auto' : ''}`}
                     />
                   </div>
                 </motion.div>

@@ -31,7 +31,7 @@ export const EducationSection = ({ language }: EducationSectionProps) => {
           className={`max-w-2xl mx-auto ${isArabic ? 'arabic' : ''}`}
         >
           <div className="cv-card text-center">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-secondary flex items-center justify-center">
               <GraduationCap className="w-10 h-10 text-primary" />
             </div>
             <h3 className={`text-xl md:text-2xl font-bold text-foreground mb-2 ${isArabic ? 'font-arabic' : 'font-display'}`}>

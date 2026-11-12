@@ -51,12 +51,12 @@ export const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                 ` : ''}
               </style>
               <div className={`cv-card ${isArabic ? 'timeline-item-ar' : ''}`}>
-                <div className={`flex flex-col md:flex-row md:items-start justify-between gap-2 mb-4 ${isArabic ? 'md:flex-row-reverse' : ''}`}>
+                <div className={`flex flex-col md:flex-row md:items-start justify-between gap-2 mb-4`}>
                   <div className={isArabic ? 'text-right' : ''}>
                     <h3 className={`text-xl font-bold text-foreground ${isArabic ? 'font-arabic' : 'font-display'}`}>
                       {exp.position[language]}
                     </h3>
-                    <p className={`text-primary font-semibold flex items-center gap-2 ${isArabic ? 'flex-row-reverse justify-end' : ''}`}>
+                    <p className={`text-secondary font-semibold flex items-center gap-2`}>
                       <Briefcase className="w-4 h-4" />
                       {exp.company[language]}
                     </p>
@@ -73,7 +73,7 @@ export const ExperienceSection = ({ language }: ExperienceSectionProps) => {
                   {exp.responsibilities[language].map((resp, respIndex) => (
                     <li 
                       key={respIndex}
-                      className={`text-muted-foreground flex items-start gap-2 ${isArabic ? 'flex-row-reverse' : ''}`}
+                      className={`text-muted-foreground flex items-start gap-2`}
                     >
                       <span className="text-accent mt-1.5 flex-shrink-0">●</span>
                       <span className={isArabic ? 'font-arabic' : ''}>{resp}</span>
