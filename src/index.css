@@ -90,8 +90,9 @@
   .hero-stack span { color: var(--lime); margin-right: 10px; letter-spacing: .12em; }
   .hero-stack b { color: #f8f7f1; font-weight: 500; padding: 6px 9px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; }
   .hero-stack svg { margin-left: auto; color: var(--lime); }
+  .site-footer { min-height: auto; background: var(--ink); color: #f8f7f1; }
   .section-divider { width: 46px; height: 4px; border-radius: 999px; background: var(--lime); }
-  .cv-card { border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.52); box-shadow: var(--shadow-card); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .cv-card { padding: 1.5rem; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.52); box-shadow: var(--shadow-card); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .cv-card:hover { transform: translateY(-4px); box-shadow: 0 22px 60px rgba(13,23,42,.13); border-color: rgba(13,23,42,.3); }
   .timeline-item::before { background: var(--cyan); box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--ink); }
   .timeline-item::after { background: var(--ink); opacity: .65; }
